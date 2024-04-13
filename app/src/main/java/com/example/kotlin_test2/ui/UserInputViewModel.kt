@@ -21,6 +21,7 @@ class UserInputViewModel: ViewModel(){
         when(event){
 
             is UserDataUiEvents.UserNameEntered -> {
+                // mutableStateOf uiState use "value" to modify
                 uiState.value = uiState.value.copy(
 
                     nameEntered = event.name,
