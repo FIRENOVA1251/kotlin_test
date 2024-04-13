@@ -21,10 +21,12 @@ class UserInputViewModel: ViewModel(){
         when(event){
 
             is UserDataUiEvents.UserNameEntered -> {
-                // mutableStateOf uiState use "value" to modify
+                // mutableStateOf uiState use "value" and "copy" to access and modify
+                // 使用copy 更改數據後 存回原value 可避免potential problem in multi-threading
+                // 也可讓compose 偵測到畫面需要重新繪製
                 uiState.value = uiState.value.copy(
 
-                    nameEntered = event.name,
+                    nameEntered = event.name
                 )
                 Log.d(TAG, "onEvent: UserNameEntered ->> ")
                 Log.d(TAG, "${uiState.value}")
